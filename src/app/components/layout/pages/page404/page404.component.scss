@@ -1,0 +1,18 @@
+.custom-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 0rem;
+  margin: 0;
+  padding: 0;
+  min-height: calc(100vh);
+  background-size: cover;
+  background-attachment: fixed;
+
+  .text-custom{
+    background-color: rgba(255, 255, 255, 0.711);
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+}

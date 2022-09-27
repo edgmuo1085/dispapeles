@@ -9,6 +9,7 @@ import { LayoutPagesComponent } from './pages/layout-pages/layout-pages.componen
 import { Page404Component } from './pages/page404/page404.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrimeCustomModule } from '../shared/prime-custom.module';
+import { NavbarComponent } from './pages/layout-pages/components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { PrimeCustomModule } from '../shared/prime-custom.module';
     LayoutMainComponent,
     LayoutPagesComponent,
     Page404Component,
+    NavbarComponent,
   ],
   imports: [
     CommonModule,

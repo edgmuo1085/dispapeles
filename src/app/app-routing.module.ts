@@ -14,6 +14,11 @@ const routes: Routes = [
         loadChildren: () => import(`./components/auth/auth.module`).then(m => m.AuthModule),
       },
       {
+        path: 'personas',
+        loadChildren: () => import(`./components/person/person.module`).then(m => m.PersonModule),
+        canActivate: [AuthGuard],
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full',
@@ -24,9 +29,9 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path:'**',
-        component: Page404Component
-      }
+        path: '**',
+        component: Page404Component,
+      },
     ],
   },
 ];
