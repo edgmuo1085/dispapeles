@@ -1,1 +1,75 @@
-<p>list-person works!</p>
+<div class="container" id="lista-person">
+  <div class="row justify-content-between">
+    <div class="col-6 py-4">
+      <h4>Listado de Personas</h4>
+    </div>
+    <div class="col-6 py-4 text-end">
+      <a class="custom-add-person" routerLink="/personas/crear" pTooltip="Agregar persona"><i class="fa-solid fa-user-plus"></i></a>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <p-table
+        #tablePerson
+        [value]="listaPersonas"
+        [(selection)]="selectedListaPersonas"
+        [rowHover]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"
+        [loading]="loading"
+        [paginator]="true"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} entradas"
+        [globalFilterFields]="['tipoId', 'identificacion', 'nombre', 'apellidos', 'direccion', 'telefono', 'edad']"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>#</th>
+            <th pSortableColumn="tipoId">Tipo ID <p-sortIcon field="tipoId"></p-sortIcon></th>
+            <th pSortableColumn="identificacion">Identificación <p-sortIcon field="identificacion"></p-sortIcon></th>
+            <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
+            <th pSortableColumn="apellidos">Apellidos <p-sortIcon field="apellidos"></p-sortIcon></th>
+            <th pSortableColumn="direccion">Dirección <p-sortIcon field="direccion"></p-sortIcon></th>
+            <th pSortableColumn="telefono">Teléfono <p-sortIcon field="telefono"></p-sortIcon></th>
+            <th pSortableColumn="edad">Edad <p-sortIcon field="edad"></p-sortIcon></th>
+            <th pSortableColumn="createdAt">Creado <p-sortIcon field="createdAt"></p-sortIcon></th>
+            <th>Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-persona let-rowIndex="rowIndex">
+          <tr>
+            <td><span class="p-column-title fw-bold">#</span> {{ rowIndex + 1 }}</td>
+            <td><span class="p-column-title fw-bold">Tipo ID</span> {{ persona.tipoId }}</td>
+            <td><span class="p-column-title fw-bold">Identificación</span> {{ persona.identificacion }}</td>
+            <td><span class="p-column-title fw-bold">Nombre</span> {{ persona.nombre }}</td>
+            <td><span class="p-column-title fw-bold">Apellidos</span> {{ persona.apellidos }}</td>
+            <td><span class="p-column-title fw-bold">Dirección</span> {{ persona.direccion }}</td>
+            <td><span class="p-column-title fw-bold">Teléfono</span> {{ persona.telefono }}</td>
+            <td><span class="p-column-title fw-bold">Edad</span> {{ persona.edad }}</td>
+            <td><span class="p-column-title fw-bold">Creado</span> {{ persona.createdAt | date: 'dd-mm-yyyy' }}</td>
+            <td>
+              <span class="p-column-title fw-bold">Creado</span>
+              <ng-container *ngIf="!showLoadingDelete; else blockDelete">
+                <div class="acciones-custom">
+                  <a pTooltip="Eliminar persona" (click)="onSubmitDeletePerson(persona)"><i class="fa-solid fa-trash"></i></a>
+                  <a pTooltip="Modificar persona" (click)="onSubmitUpdatePerson(persona.id)"><i class="fa-solid fa-pen"></i></a>
+                </div>
+              </ng-container>
+              <ng-template #blockDelete>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span class="visually-hidden">Loading...</span>
+              </ng-template>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="10">No existen datos para mostrar.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+<p-confirmDialog key="deletePerson" icon="pi pi-exclamation-triangle"></p-confirmDialog>

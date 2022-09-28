@@ -1,1 +1,90 @@
-<p>create-person works!</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-6">
+      <form [formGroup]="createPersonForm" autocomplete="off" class="form-custom">
+        <input type="hidden" formControlName="id" />
+        <div class="icon-person">
+          <i class="fa-solid fa-address-card"></i>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" formControlName="nombre" class="form-control" id="floatingInput" placeholder="Nombre" />
+          <label for="floatingInput">Nombre</label>
+          <small class="custom-error" *ngIf="createPersonForm.controls['nombre'].invalid && this.createPersonForm.controls['nombre'].dirty"
+            >* Nombre requerido</small
+          >
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" formControlName="apellidos" class="form-control" id="floatingInput" placeholder="Apellidos" />
+          <label for="floatingInput">Apellidos</label>
+          <small
+            class="custom-error"
+            *ngIf="createPersonForm.controls['apellidos'].invalid && this.createPersonForm.controls['apellidos'].dirty"
+            >* Apellidos requeridos</small
+          >
+        </div>
+        <div class="form-floating mb-3">
+          <p-dropdown [options]="listTypeID" formControlName="tipoId" optionLabel="tipoId" optionValue="tipoId"></p-dropdown>
+          <small class="custom-error" *ngIf="createPersonForm.controls['tipoId'].invalid && this.createPersonForm.controls['tipoId'].dirty"
+            >* Tipo de identificación requerida</small
+          >
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" formControlName="identificacion" class="form-control" id="floatingInput" placeholder="Identificación" />
+          <label for="floatingInput">Identificación</label>
+          <small
+            class="custom-error"
+            *ngIf="createPersonForm.controls['identificacion'].invalid && this.createPersonForm.controls['identificacion'].dirty"
+            >* Identificación requerida</small
+          >
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" formControlName="edad" class="form-control" id="floatingInput" placeholder="Edad" />
+          <label for="floatingInput">Edad</label>
+          <small class="custom-error" *ngIf="createPersonForm.controls['edad'].invalid && this.createPersonForm.controls['edad'].dirty"
+            >* Edad requerida</small
+          >
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" formControlName="telefono" class="form-control" id="floatingInput" placeholder="Teléfono" />
+          <label for="floatingInput">Teléfono</label>
+          <small
+            class="custom-error"
+            *ngIf="createPersonForm.controls['telefono'].invalid && this.createPersonForm.controls['telefono'].dirty"
+            >* Teléfono requerido</small
+          >
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" formControlName="direccion" class="form-control" id="floatingInput" placeholder="Dirección" />
+          <label for="floatingInput">Dirección</label>
+          <small
+            class="custom-error"
+            *ngIf="createPersonForm.controls['direccion'].invalid && this.createPersonForm.controls['direccion'].dirty"
+            >* Dirección requerida</small
+          >
+        </div>
+        <div class="mt-4">
+          <ng-container *ngIf="!showModify; else blockModify">
+            <button type="button" class="btn btn-lg btn-primary" (click)="createPerson()" [disabled]="createPersonForm.invalid">
+              Enviar
+              <ng-container *ngIf="loading">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span class="visually-hidden">Loading...</span>
+              </ng-container>
+            </button>
+
+          </ng-container>
+          <ng-template #blockModify>
+            <button type="button" class="btn btn-lg btn-primary" (click)="modifyPerson()" [disabled]="createPersonForm.invalid">
+              Modificar
+              <ng-container *ngIf="loading">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span class="visually-hidden">Loading...</span>
+              </ng-container>
+            </button>
+          </ng-template>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

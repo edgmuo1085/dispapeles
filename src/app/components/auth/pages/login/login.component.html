@@ -1,1 +1,24 @@
-<p>login works!</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-6">
+      <form [formGroup]="loginForm" autocomplete="off"  class="form-custom">
+        <div class="icon-person">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" formControlName="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
+          <label for="floatingInput">Correo electrónico</label>
+          <small class="custom-error" *ngIf="loginForm.controls['email'].invalid && this.loginForm.controls['email'].dirty" >* Correo electrónico requerido</small>
+        </div>
+        <div class="form-floating">
+          <input type="password" formControlName="pass" class="form-control" id="floatingPassword" placeholder="Password" />
+          <label for="floatingPassword">Contraseña</label>
+          <small class="custom-error" *ngIf="loginForm.controls['pass'].invalid && this.loginForm.controls['pass'].dirty" >* Contraseña requerida</small>
+        </div>
+        <div class="mt-4">
+            <button type="button" class="btn btn-lg btn-primary" (click)="onClick()" [disabled]="loginForm.invalid">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
