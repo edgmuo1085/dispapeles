@@ -2,6 +2,7 @@
   "name": "dispapeles",
   "version": "0.0.0",
   "author": "Edgar Muñoz",
+  "email": "edgmuo1085@gmail.com",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
